@@ -6,7 +6,7 @@ import {
   Globe, Mail, MessageSquare, Phone, Bot, Shield, Camera,
   Zap, Video, BarChart3, ArrowRight, CheckCircle2, Play,
   Smartphone, Calendar, FileText, Users, TrendingUp,
-  ChevronDown, Sparkles, Clock, DollarSign, Star,
+  ChevronDown, Sparkles, Clock, DollarSign, Star, Info,
 } from 'lucide-react'
 
 const features = [
@@ -155,7 +155,7 @@ const faqs = [
   },
   {
     q: 'What is the 2-payment option?',
-    a: '2 payments of $275 instead of one payment of $495. Same everything. We start building after your first payment.',
+    a: '2 payments of $275 ($550 total) instead of one payment of $495. After payment 1, we build your landing page, legal pages, phone number, AI chatbot, and write your email sequences. After payment 2, we activate everything: ManyChat automation, SMS drip, voicemail drops, email sequences go live, and the chatbot goes on your landing page. Pay in full to save $55.',
   },
   {
     q: 'Can I use this for any type of business?',
@@ -246,7 +246,11 @@ export default function UpgradePage() {
                   <div className="flex items-baseline justify-center gap-1 mb-1">
                     <span className="text-5xl font-bold text-gray-900">$495</span>
                   </div>
-                  <p className="text-sm text-gray-400 mb-5">One-time payment. Everything included.</p>
+                  <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-green-50 border border-green-200 mb-4">
+                    <DollarSign className="w-3 h-3 text-green-600" />
+                    <span className="text-xs font-semibold text-green-700">Save $55 vs. payment plan</span>
+                  </div>
+                  <p className="text-sm text-gray-400 mb-5">One payment. Everything built and activated immediately.</p>
                 </div>
               ) : (
                 <div>
@@ -254,27 +258,95 @@ export default function UpgradePage() {
                     <span className="text-5xl font-bold text-gray-900">$275</span>
                     <span className="text-lg text-gray-400">x 2</span>
                   </div>
-                  <p className="text-sm text-gray-400 mb-5">Two payments. We start building after payment 1.</p>
+                  <p className="text-sm text-gray-400 mb-3">$550 total. We start building after payment 1.</p>
+
+                  {/* Payment 1 delivery info */}
+                  <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 mb-3 text-left">
+                    <div className="flex items-center gap-1.5 mb-2">
+                      <Info className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+                      <span className="text-xs font-semibold text-blue-700">After Payment 1 -- We Build:</span>
+                    </div>
+                    <ul className="space-y-1 ml-5">
+                      <li className="text-xs text-blue-600 flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />
+                        Landing page on your domain
+                      </li>
+                      <li className="text-xs text-blue-600 flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />
+                        Legal pages (Terms, Privacy, E-Sign)
+                      </li>
+                      <li className="text-xs text-blue-600 flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />
+                        Business phone number
+                      </li>
+                      <li className="text-xs text-blue-600 flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />
+                        AI chatbot trained on your offer
+                      </li>
+                      <li className="text-xs text-blue-600 flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />
+                        Email sequences written (drafts ready)
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Payment 2 activation info */}
+                  <div className="bg-amber-50 border border-amber-100 rounded-lg p-3 mb-4 text-left">
+                    <div className="flex items-center gap-1.5 mb-2">
+                      <Info className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                      <span className="text-xs font-semibold text-amber-700">After Payment 2 -- We Activate:</span>
+                    </div>
+                    <ul className="space-y-1 ml-5">
+                      <li className="text-xs text-amber-600 flex items-center gap-1.5">
+                        <Zap className="w-3 h-3 text-amber-400 shrink-0" />
+                        ManyChat automation (Instagram + TikTok)
+                      </li>
+                      <li className="text-xs text-amber-600 flex items-center gap-1.5">
+                        <Zap className="w-3 h-3 text-amber-400 shrink-0" />
+                        SMS drip sequences go live
+                      </li>
+                      <li className="text-xs text-amber-600 flex items-center gap-1.5">
+                        <Zap className="w-3 h-3 text-amber-400 shrink-0" />
+                        Voicemail drops activated
+                      </li>
+                      <li className="text-xs text-amber-600 flex items-center gap-1.5">
+                        <Zap className="w-3 h-3 text-amber-400 shrink-0" />
+                        Email automation turned on
+                      </li>
+                      <li className="text-xs text-amber-600 flex items-center gap-1.5">
+                        <Zap className="w-3 h-3 text-amber-400 shrink-0" />
+                        Chatbot embedded on landing page
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               )}
 
               <a
-                href="https://coreypearson.gumroad.com/l/hhgqmv"
+                href={paymentPlan === 'full' ? 'https://coreypearson.gumroad.com/l/hhgqmv' : 'https://coreypearson.gumroad.com/l/tjgumb'}
                 className="block w-full py-4 bg-brand hover:bg-brand-dark text-white font-heading text-lg font-bold uppercase tracking-wide rounded-xl transition-all hover:shadow-lg hover:shadow-brand/20 active:scale-[0.98]"
               >
-                Get My System Built
+                {paymentPlan === 'full' ? 'Get My System Built' : 'Start With Payment 1'}
               </a>
 
-              <div className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-400">
-                <span className="flex items-center gap-1">
-                  <Clock className="w-3 h-3" />
-                  5-7 day delivery
-                </span>
-                <span className="flex items-center gap-1">
-                  <Shield className="w-3 h-3" />
-                  Secure checkout
-                </span>
-              </div>
+              {paymentPlan === 'full' && (
+                <div className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-400">
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    5-7 day delivery
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Shield className="w-3 h-3" />
+                    Secure checkout
+                  </span>
+                </div>
+              )}
+
+              {paymentPlan === 'split' && (
+                <p className="text-[11px] text-gray-400 mt-3 text-center leading-relaxed">
+                  Payment 2 due within 14 days. All automations activate after final payment.
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -573,7 +645,7 @@ export default function UpgradePage() {
                   paymentPlan === 'full' ? 'bg-brand text-white' : 'text-gray-400 hover:text-white'
                 }`}
               >
-                $495 One-Time
+                $495 Best Value
               </button>
               <button
                 onClick={() => setPaymentPlan('split')}
@@ -585,11 +657,45 @@ export default function UpgradePage() {
               </button>
             </div>
 
+            {paymentPlan === 'full' && (
+              <div className="flex items-center justify-center gap-1 mb-4">
+                <DollarSign className="w-3.5 h-3.5 text-green-400" />
+                <span className="text-xs font-semibold text-green-400">Save $55 vs. payment plan</span>
+              </div>
+            )}
+
+            {paymentPlan === 'split' && (
+              <div className="bg-gray-700/50 rounded-lg p-3 mb-4 text-left border border-gray-600">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <Info className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <span className="text-xs font-semibold text-gray-300">How it works:</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <p className="text-[10px] font-semibold text-blue-400 mb-1">Payment 1 -- We Build</p>
+                    <ul className="space-y-0.5">
+                      <li className="text-[10px] text-gray-400">Landing page + domain</li>
+                      <li className="text-[10px] text-gray-400">Legal pages + phone</li>
+                      <li className="text-[10px] text-gray-400">Chatbot + email drafts</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-semibold text-amber-400 mb-1">Payment 2 -- We Activate</p>
+                    <ul className="space-y-0.5">
+                      <li className="text-[10px] text-gray-400">ManyChat automation</li>
+                      <li className="text-[10px] text-gray-400">SMS + voicemail drops</li>
+                      <li className="text-[10px] text-gray-400">Everything connected live</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <a
-              href="https://coreypearson.gumroad.com/l/hhgqmv"
+              href={paymentPlan === 'full' ? 'https://coreypearson.gumroad.com/l/hhgqmv' : 'https://coreypearson.gumroad.com/l/tjgumb'}
               className="block w-full py-4 bg-brand hover:bg-brand-dark text-white font-heading text-xl font-bold uppercase tracking-wide rounded-xl transition-all hover:shadow-lg hover:shadow-brand/30 active:scale-[0.98] mb-4"
             >
-              Get My System Built
+              {paymentPlan === 'full' ? 'Get My System Built' : 'Start With Payment 1'}
               <ArrowRight className="inline w-5 h-5 ml-2" />
             </a>
 

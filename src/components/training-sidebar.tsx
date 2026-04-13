@@ -194,12 +194,12 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
           <p className="text-[11px] text-gray-300 leading-relaxed mb-3">
             We build your AI business -- landing page, automations, emails, everything. You just show up.
           </p>
-          <div className="mb-3">
+          <div className="mb-2">
             <span className="text-2xl font-bold">$495</span>
-            <span className="text-xs text-gray-400 ml-1">one-time</span>
+            <span className="text-xs text-green-400 ml-1.5 font-semibold">Save $55</span>
           </div>
           <p className="text-[10px] text-gray-400 mb-3">
-            Or 2 payments of $275
+            Or 2 payments of $275 ($550)
           </p>
           <a
             href="https://training.theproblemguide.com/upgrade"
