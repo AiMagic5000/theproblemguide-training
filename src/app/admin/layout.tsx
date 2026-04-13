@@ -12,8 +12,11 @@ export default async function AdminLayout({
   const user = await currentUser()
   const adminEmail = process.env.ADMIN_EMAIL || 'coreypearsonemail@gmail.com'
 
+  // In development mode, any authenticated user can access admin
+  // In production, only ADMIN_EMAIL gets access
+  const isDev = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY?.startsWith('pk_test_')
   const userEmail = user?.emailAddresses?.[0]?.emailAddress
-  if (userEmail !== adminEmail) {
+  if (!user || (!isDev && userEmail !== adminEmail)) {
     redirect('/training')
   }
 
