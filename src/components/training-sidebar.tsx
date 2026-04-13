@@ -202,7 +202,7 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
             Or 2 payments of $275
           </p>
           <a
-            href="https://theproblemguide.com/upgrade"
+            href="/upgrade"
             className="block w-full py-2.5 bg-brand hover:bg-brand-dark text-white text-center text-sm font-bold rounded-lg transition-colors"
           >
             Get Started
