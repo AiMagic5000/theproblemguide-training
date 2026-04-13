@@ -259,7 +259,7 @@ export default function UpgradePage() {
               )}
 
               <a
-                href="#gumroad"
+                href="https://coreypearson.gumroad.com/l/hhgqmv"
                 className="block w-full py-4 bg-brand hover:bg-brand-dark text-white font-heading text-lg font-bold uppercase tracking-wide rounded-xl transition-all hover:shadow-lg hover:shadow-brand/20 active:scale-[0.98]"
               >
                 Get My System Built
@@ -586,7 +586,7 @@ export default function UpgradePage() {
             </div>
 
             <a
-              href="#gumroad"
+              href="https://coreypearson.gumroad.com/l/hhgqmv"
               className="block w-full py-4 bg-brand hover:bg-brand-dark text-white font-heading text-xl font-bold uppercase tracking-wide rounded-xl transition-all hover:shadow-lg hover:shadow-brand/30 active:scale-[0.98] mb-4"
             >
               Get My System Built
