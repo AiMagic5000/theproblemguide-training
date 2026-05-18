@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { CheckCircle2, ArrowRight, Building2, Target, Palette, Globe, Phone, Instagram, Image as ImageIcon, NotebookPen, Sparkles } from 'lucide-react'
+import { CheckCircle2, ArrowRight, Building2, Target, Palette, Globe, Phone, AtSign, Image as ImageIcon, NotebookPen, Sparkles } from 'lucide-react'
 
 interface FormData {
   // 1. Buyer + business
@@ -46,7 +46,7 @@ const SECTIONS = [
   { key: 'brand', title: 'Your brand voice', icon: Palette },
   { key: 'domain', title: 'Domain preferences', icon: Globe },
   { key: 'phone', title: 'Phone forwarding', icon: Phone },
-  { key: 'social', title: 'Social media', icon: Instagram },
+  { key: 'social', title: 'Social media', icon: AtSign },
   { key: 'accounts', title: 'Existing tools', icon: NotebookPen },
   { key: 'review', title: 'Final notes', icon: Sparkles },
 ] as const
