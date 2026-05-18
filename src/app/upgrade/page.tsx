@@ -221,25 +221,17 @@ function FeatureMedia({ media }: { media: MediaSpec }) {
 
 function FlowMedia() {
   return (
-    <div className="relative w-full aspect-video bg-gray-100 rounded-xl border border-gray-200 overflow-hidden">
-      <img
-        src="/upgrade/flow.jpg"
-        alt="Watch the full automation flow"
-        loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover"
-        onError={(e) => {
-          (e.currentTarget as HTMLImageElement).src = '/upgrade/landing.jpg'
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-20 h-20 rounded-full bg-white/95 border-2 border-white flex items-center justify-center shadow-xl">
-          <Play className="w-8 h-8 text-brand ml-1" />
-        </div>
-      </div>
-      <p className="absolute bottom-4 left-0 right-0 text-center text-sm font-semibold text-white drop-shadow-lg">
-        Watch the full automation flow in 90 seconds
-      </p>
+    <div className="relative w-full aspect-video bg-black rounded-xl border border-gray-200 overflow-hidden shadow-lg">
+      <video
+        controls
+        preload="metadata"
+        playsInline
+        poster="/flow-video-poster.jpg"
+        className="absolute inset-0 w-full h-full object-contain"
+      >
+        <source src="/flow-video.mp4" type="video/mp4" />
+        Your browser does not support embedded video.
+      </video>
     </div>
   )
 }
