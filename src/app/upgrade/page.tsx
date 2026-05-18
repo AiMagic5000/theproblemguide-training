@@ -77,7 +77,7 @@ const features: Feature[] = [
       'Professional AI voice or your own recording',
       'Automated delivery through our system',
     ],
-    media: { mediaType: 'audio', src: '/voicedrop-sample.mp3', label: 'Listen to a sample voicedrop' },
+    media: { mediaType: 'video', src: '/voicedrop-sample.mp4', label: 'Watch a sample voicedrop' },
   },
   {
     icon: Camera,
@@ -194,8 +194,14 @@ function FeatureMedia({ media }: { media: MediaSpec }) {
   }
   if (media.mediaType === 'video') {
     return (
-      <div className="relative w-full aspect-video bg-gray-100 rounded-xl border border-gray-200 overflow-hidden">
-        <video controls preload="metadata" className="w-full h-full object-cover">
+      <div className="relative w-full aspect-video bg-black rounded-xl border border-gray-200 overflow-hidden">
+        <video
+          controls
+          preload="metadata"
+          playsInline
+          poster="/voicedrop-sample-poster.jpg"
+          className="w-full h-full object-contain"
+        >
           <source src={media.src} type="video/mp4" />
         </video>
       </div>
