@@ -11,8 +11,8 @@ export const defaultDays = [
         position: 1,
         title: 'The Loop That Keeps You Stuck',
         description: 'Most people consume more information thinking it will help. It does the opposite. This video shows you the exact pattern and why breaking it changes everything.',
-        video_url: '',
-        duration_minutes: 15,
+        video_url: 'https://theproblemguide.com/videos/day-1-video-1.mp4',
+        duration_minutes: 8,
       },
       {
         position: 2,
