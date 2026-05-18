@@ -1,15 +1,28 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { useState } from 'react'
 import {
   Globe, Mail, MessageSquare, Phone, Bot, Shield, Camera,
-  Zap, Video, BarChart3, ArrowRight, CheckCircle2, Play,
-  Smartphone, Calendar, FileText, Users, TrendingUp,
+  Zap, BarChart3, ArrowRight, CheckCircle2, Play,
+  Smartphone, FileText, Users, TrendingUp,
   ChevronDown, Sparkles, Clock, DollarSign, Star, Info,
 } from 'lucide-react'
 
-const features = [
+type MediaSpec =
+  | { mediaType: 'image'; src: string; label: string }
+  | { mediaType: 'audio'; src: string; label: string }
+  | { mediaType: 'video'; src: string; label: string }
+
+interface Feature {
+  icon: typeof Globe
+  title: string
+  tagline: string
+  description: string
+  details: string[]
+  media: MediaSpec
+}
+
+const features: Feature[] = [
   {
     icon: Globe,
     title: 'Your Own Landing Page',
@@ -22,8 +35,7 @@ const features = [
       'Thank-you page with instant delivery',
       'SSL certificate (security lock icon)',
     ],
-    mediaType: 'image' as const,
-    mediaLabel: 'Landing page preview',
+    media: { mediaType: 'image', src: '/upgrade/landing.jpg', label: 'Landing page preview' },
   },
   {
     icon: Mail,
@@ -37,8 +49,7 @@ const features = [
       '7-day follow-up drip sequence',
       'Upsell email at the right moment',
     ],
-    mediaType: 'image' as const,
-    mediaLabel: 'Email automation flow',
+    media: { mediaType: 'image', src: '/upgrade/email.jpg', label: 'Email automation flow' },
   },
   {
     icon: MessageSquare,
@@ -52,8 +63,7 @@ const features = [
       'STOP opt-out built in (compliant)',
       'Delivered through real phone numbers',
     ],
-    mediaType: 'image' as const,
-    mediaLabel: 'SMS sequence preview',
+    media: { mediaType: 'image', src: '/upgrade/sms.jpg', label: 'SMS sequence preview' },
   },
   {
     icon: Phone,
@@ -67,8 +77,7 @@ const features = [
       'Professional AI voice or your own recording',
       'Automated delivery through our system',
     ],
-    mediaType: 'video' as const,
-    mediaLabel: 'Listen to a sample voicedrop',
+    media: { mediaType: 'audio', src: '/voicedrop-sample.mp3', label: 'Listen to a sample voicedrop' },
   },
   {
     icon: Camera,
@@ -82,8 +91,7 @@ const features = [
       '30 days of content planned and scheduled',
       'Keyword triggers for common questions',
     ],
-    mediaType: 'video' as const,
-    mediaLabel: 'See ManyChat automation in action',
+    media: { mediaType: 'image', src: '/upgrade/manychat.jpg', label: 'ManyChat automation preview' },
   },
   {
     icon: Bot,
@@ -97,8 +105,7 @@ const features = [
       'White-label -- resell to your own clients',
       'Works 24/7, never takes a day off',
     ],
-    mediaType: 'image' as const,
-    mediaLabel: 'Chatbot conversation preview',
+    media: { mediaType: 'image', src: '/upgrade/chatbot.jpg', label: 'Chatbot conversation preview' },
   },
   {
     icon: Shield,
@@ -112,8 +119,7 @@ const features = [
       'TCPA-compliant opt-in language',
       'All linked from your landing page',
     ],
-    mediaType: 'image' as const,
-    mediaLabel: 'Legal pages example',
+    media: { mediaType: 'image', src: '/upgrade/legal.jpg', label: 'Legal pages example' },
   },
   {
     icon: Smartphone,
@@ -127,8 +133,7 @@ const features = [
       'Separate from your personal number',
       'Set up and ready to use',
     ],
-    mediaType: 'image' as const,
-    mediaLabel: 'Phone setup overview',
+    media: { mediaType: 'image', src: '/upgrade/phone.jpg', label: 'Phone setup overview' },
   },
 ]
 
@@ -163,22 +168,72 @@ const faqs = [
   },
 ]
 
-function MediaPlaceholder({ type, label }: { type: 'image' | 'video'; label: string }) {
-  return (
-    <div className="relative w-full aspect-video bg-gray-100 rounded-xl border border-gray-200 overflow-hidden flex items-center justify-center group">
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100" />
-      <div className="relative flex flex-col items-center gap-3">
-        {type === 'video' ? (
-          <div className="w-16 h-16 rounded-full bg-white border-2 border-gray-200 flex items-center justify-center shadow-sm group-hover:border-brand group-hover:shadow-md transition-all">
+function FeatureMedia({ media }: { media: MediaSpec }) {
+  if (media.mediaType === 'audio') {
+    return (
+      <div className="relative w-full aspect-video bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl border border-gray-200 overflow-hidden flex items-center justify-center">
+        <div className="text-center px-6">
+          <div className="w-16 h-16 rounded-full bg-brand/15 border-2 border-brand/40 flex items-center justify-center shadow-lg mx-auto mb-4">
             <Play className="w-6 h-6 text-brand ml-1" />
           </div>
-        ) : (
-          <div className="w-16 h-16 rounded-xl bg-white border-2 border-gray-200 flex items-center justify-center shadow-sm">
-            <BarChart3 className="w-6 h-6 text-gray-400" />
-          </div>
-        )}
-        <p className="text-xs text-gray-400 font-medium">{label}</p>
+          <p className="text-xs text-gray-300 font-medium uppercase tracking-wider mb-3">
+            {media.label}
+          </p>
+          <audio
+            controls
+            preload="metadata"
+            className="w-full max-w-xs mx-auto"
+            style={{ filter: 'invert(0.85)' }}
+          >
+            <source src={media.src} type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        </div>
       </div>
+    )
+  }
+  if (media.mediaType === 'video') {
+    return (
+      <div className="relative w-full aspect-video bg-gray-100 rounded-xl border border-gray-200 overflow-hidden">
+        <video controls preload="metadata" className="w-full h-full object-cover">
+          <source src={media.src} type="video/mp4" />
+        </video>
+      </div>
+    )
+  }
+  return (
+    <div className="relative w-full aspect-video bg-gray-100 rounded-xl border border-gray-200 overflow-hidden">
+      <img
+        src={media.src}
+        alt={media.label}
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+    </div>
+  )
+}
+
+function FlowMedia() {
+  return (
+    <div className="relative w-full aspect-video bg-gray-100 rounded-xl border border-gray-200 overflow-hidden">
+      <img
+        src="/upgrade/flow.jpg"
+        alt="Watch the full automation flow"
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover"
+        onError={(e) => {
+          (e.currentTarget as HTMLImageElement).src = '/upgrade/landing.jpg'
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-20 h-20 rounded-full bg-white/95 border-2 border-white flex items-center justify-center shadow-xl">
+          <Play className="w-8 h-8 text-brand ml-1" />
+        </div>
+      </div>
+      <p className="absolute bottom-4 left-0 right-0 text-center text-sm font-semibold text-white drop-shadow-lg">
+        Watch the full automation flow in 90 seconds
+      </p>
     </div>
   )
 }
@@ -216,13 +271,12 @@ export default function UpgradePage() {
 
           {/* Pricing Card */}
           <div className="max-w-md mx-auto bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden">
-            {/* Toggle */}
             <div className="flex border-b border-gray-100">
               <button
                 onClick={() => setPaymentPlan('full')}
                 className={`flex-1 py-3.5 text-sm font-semibold transition-colors ${
                   paymentPlan === 'full'
-                    ? 'text-brand border-b-2 border-brand bg-brand/3'
+                    ? 'text-brand border-b-2 border-brand bg-brand/5'
                     : 'text-gray-400 hover:text-gray-600'
                 }`}
               >
@@ -232,7 +286,7 @@ export default function UpgradePage() {
                 onClick={() => setPaymentPlan('split')}
                 className={`flex-1 py-3.5 text-sm font-semibold transition-colors ${
                   paymentPlan === 'split'
-                    ? 'text-brand border-b-2 border-brand bg-brand/3'
+                    ? 'text-brand border-b-2 border-brand bg-brand/5'
                     : 'text-gray-400 hover:text-gray-600'
                 }`}
               >
@@ -259,64 +313,30 @@ export default function UpgradePage() {
                     <span className="text-lg text-gray-400">x 2</span>
                   </div>
                   <p className="text-sm text-gray-400 mb-3">$550 total. We start building after payment 1.</p>
-
-                  {/* Payment 1 delivery info */}
                   <div className="bg-blue-50 border border-blue-100 rounded-lg p-3 mb-3 text-left">
                     <div className="flex items-center gap-1.5 mb-2">
                       <Info className="w-3.5 h-3.5 text-blue-500 shrink-0" />
                       <span className="text-xs font-semibold text-blue-700">After Payment 1 -- We Build:</span>
                     </div>
                     <ul className="space-y-1 ml-5">
-                      <li className="text-xs text-blue-600 flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />
-                        Landing page on your domain
-                      </li>
-                      <li className="text-xs text-blue-600 flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />
-                        Legal pages (Terms, Privacy, E-Sign)
-                      </li>
-                      <li className="text-xs text-blue-600 flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />
-                        Business phone number
-                      </li>
-                      <li className="text-xs text-blue-600 flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />
-                        AI chatbot trained on your offer
-                      </li>
-                      <li className="text-xs text-blue-600 flex items-center gap-1.5">
-                        <CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />
-                        Email sequences written (drafts ready)
-                      </li>
+                      <li className="text-xs text-blue-600 flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />Landing page on your domain</li>
+                      <li className="text-xs text-blue-600 flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />Legal pages (Terms, Privacy, E-Sign)</li>
+                      <li className="text-xs text-blue-600 flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />Business phone number</li>
+                      <li className="text-xs text-blue-600 flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />AI chatbot trained on your offer</li>
+                      <li className="text-xs text-blue-600 flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 text-blue-400 shrink-0" />Email sequences written (drafts ready)</li>
                     </ul>
                   </div>
-
-                  {/* Payment 2 activation info */}
                   <div className="bg-amber-50 border border-amber-100 rounded-lg p-3 mb-4 text-left">
                     <div className="flex items-center gap-1.5 mb-2">
                       <Info className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                       <span className="text-xs font-semibold text-amber-700">After Payment 2 -- We Activate:</span>
                     </div>
                     <ul className="space-y-1 ml-5">
-                      <li className="text-xs text-amber-600 flex items-center gap-1.5">
-                        <Zap className="w-3 h-3 text-amber-400 shrink-0" />
-                        ManyChat automation (Instagram + TikTok)
-                      </li>
-                      <li className="text-xs text-amber-600 flex items-center gap-1.5">
-                        <Zap className="w-3 h-3 text-amber-400 shrink-0" />
-                        SMS drip sequences go live
-                      </li>
-                      <li className="text-xs text-amber-600 flex items-center gap-1.5">
-                        <Zap className="w-3 h-3 text-amber-400 shrink-0" />
-                        Voicemail drops activated
-                      </li>
-                      <li className="text-xs text-amber-600 flex items-center gap-1.5">
-                        <Zap className="w-3 h-3 text-amber-400 shrink-0" />
-                        Email automation turned on
-                      </li>
-                      <li className="text-xs text-amber-600 flex items-center gap-1.5">
-                        <Zap className="w-3 h-3 text-amber-400 shrink-0" />
-                        Chatbot embedded on landing page
-                      </li>
+                      <li className="text-xs text-amber-600 flex items-center gap-1.5"><Zap className="w-3 h-3 text-amber-400 shrink-0" />ManyChat automation (Instagram + TikTok)</li>
+                      <li className="text-xs text-amber-600 flex items-center gap-1.5"><Zap className="w-3 h-3 text-amber-400 shrink-0" />SMS drip sequences go live</li>
+                      <li className="text-xs text-amber-600 flex items-center gap-1.5"><Zap className="w-3 h-3 text-amber-400 shrink-0" />Voicemail drops activated</li>
+                      <li className="text-xs text-amber-600 flex items-center gap-1.5"><Zap className="w-3 h-3 text-amber-400 shrink-0" />Email automation turned on</li>
+                      <li className="text-xs text-amber-600 flex items-center gap-1.5"><Zap className="w-3 h-3 text-amber-400 shrink-0" />Chatbot embedded on landing page</li>
                     </ul>
                   </div>
                 </div>
@@ -331,17 +351,10 @@ export default function UpgradePage() {
 
               {paymentPlan === 'full' && (
                 <div className="flex items-center justify-center gap-4 mt-4 text-xs text-gray-400">
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    5-7 day delivery
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <Shield className="w-3 h-3" />
-                    Secure checkout
-                  </span>
+                  <span className="flex items-center gap-1"><Clock className="w-3 h-3" />5-7 day delivery</span>
+                  <span className="flex items-center gap-1"><Shield className="w-3 h-3" />Secure checkout</span>
                 </div>
               )}
-
               {paymentPlan === 'split' && (
                 <p className="text-[11px] text-gray-400 mt-3 text-center leading-relaxed">
                   Payment 2 due within 14 days. All automations activate after final payment.
@@ -367,40 +380,27 @@ export default function UpgradePage() {
               <div className="w-12 h-12 rounded-full bg-brand/5 flex items-center justify-center mx-auto mb-3">
                 <Camera className="w-5 h-5 text-brand" />
               </div>
-              <h3 className="font-heading text-sm font-bold uppercase text-gray-900 mb-1">
-                You Post
-              </h3>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Sponsor 1-3 posts on Instagram or TikTok. People comment or DM you.
-              </p>
+              <h3 className="font-heading text-sm font-bold uppercase text-gray-900 mb-1">You Post</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">Sponsor 1-3 posts on Instagram or TikTok. People comment or DM you.</p>
             </div>
             <div className="bg-white rounded-xl border border-gray-200 p-5 text-center">
               <div className="w-12 h-12 rounded-full bg-brand/5 flex items-center justify-center mx-auto mb-3">
                 <Zap className="w-5 h-5 text-brand" />
               </div>
-              <h3 className="font-heading text-sm font-bold uppercase text-gray-900 mb-1">
-                ManyChat Replies
-              </h3>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                ManyChat auto-replies to every comment and DM. Sends them to your landing page.
-              </p>
+              <h3 className="font-heading text-sm font-bold uppercase text-gray-900 mb-1">ManyChat Replies</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">ManyChat auto-replies to every comment and DM. Sends them to your landing page.</p>
             </div>
             <div className="bg-white rounded-xl border border-gray-200 p-5 text-center">
               <div className="w-12 h-12 rounded-full bg-brand/5 flex items-center justify-center mx-auto mb-3">
                 <TrendingUp className="w-5 h-5 text-brand" />
               </div>
-              <h3 className="font-heading text-sm font-bold uppercase text-gray-900 mb-1">
-                System Follows Up
-              </h3>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                Email, SMS, voicemail -- all fire automatically. You collect leads while you sleep.
-              </p>
+              <h3 className="font-heading text-sm font-bold uppercase text-gray-900 mb-1">System Follows Up</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">Email, SMS, voicemail -- all fire automatically. You collect leads while you sleep.</p>
             </div>
           </div>
 
-          {/* Flow Video Placeholder */}
           <div className="mt-8">
-            <MediaPlaceholder type="video" label="Watch the full automation flow in 90 seconds" />
+            <FlowMedia />
           </div>
         </div>
       </section>
@@ -422,24 +422,17 @@ export default function UpgradePage() {
 
               return (
                 <div key={i} className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 items-start`}>
-                  {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-xl bg-brand/5 flex items-center justify-center shrink-0">
                         <Icon className="w-5 h-5 text-brand" />
                       </div>
                       <div>
-                        <h3 className="font-heading text-xl font-bold uppercase text-gray-900 leading-tight">
-                          {feature.title}
-                        </h3>
+                        <h3 className="font-heading text-xl font-bold uppercase text-gray-900 leading-tight">{feature.title}</h3>
                         <p className="text-sm text-gray-400">{feature.tagline}</p>
                       </div>
                     </div>
-
-                    <p className="text-[15px] text-gray-600 leading-relaxed mb-4">
-                      {feature.description}
-                    </p>
-
+                    <p className="text-[15px] text-gray-600 leading-relaxed mb-4">{feature.description}</p>
                     <ul className="space-y-2">
                       {feature.details.map((detail, j) => (
                         <li key={j} className="flex items-start gap-2.5">
@@ -449,10 +442,8 @@ export default function UpgradePage() {
                       ))}
                     </ul>
                   </div>
-
-                  {/* Media Placeholder */}
                   <div className="flex-1 w-full lg:max-w-sm">
-                    <MediaPlaceholder type={feature.mediaType} label={feature.mediaLabel} />
+                    <FeatureMedia media={feature.media} />
                   </div>
                 </div>
               )
@@ -464,47 +455,21 @@ export default function UpgradePage() {
       {/* The Process */}
       <section className="py-14 bg-gray-50 border-y border-gray-100">
         <div className="max-w-3xl mx-auto px-5">
-          <p className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-brand text-center mb-2">
-            How It Works
-          </p>
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold uppercase text-gray-900 text-center mb-10">
-            3 Steps. We Handle The Hard Part.
-          </h2>
-
+          <p className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-brand text-center mb-2">How It Works</p>
+          <h2 className="font-heading text-2xl sm:text-3xl font-bold uppercase text-gray-900 text-center mb-10">3 Steps. We Handle The Hard Part.</h2>
           <div className="grid sm:grid-cols-3 gap-6">
             {[
-              {
-                step: '1',
-                title: 'You Pay & Answer 5 Questions',
-                desc: 'Tell us your offer, your domain preference, and give us Instagram access. That takes about 10 minutes.',
-                icon: FileText,
-              },
-              {
-                step: '2',
-                title: 'We Build Everything',
-                desc: 'In 5-7 days, we set up your domain, landing page, email, SMS, voicemail, ManyChat, chatbot, legal pages, and phone number.',
-                icon: Zap,
-              },
-              {
-                step: '3',
-                title: 'You Post & Collect Leads',
-                desc: 'We hand you the keys. You sponsor 1-3 posts. The system does the rest. Leads roll in on autopilot.',
-                icon: DollarSign,
-              },
+              { step: '1', title: 'You Pay & Answer 5 Questions', desc: 'Tell us your offer, your domain preference, and give us Instagram access. That takes about 10 minutes.', icon: FileText },
+              { step: '2', title: 'We Build Everything', desc: 'In 5-7 days, we set up your domain, landing page, email, SMS, voicemail, ManyChat, chatbot, legal pages, and phone number.', icon: Zap },
+              { step: '3', title: 'You Post & Collect Leads', desc: 'We hand you the keys. You sponsor 1-3 posts. The system does the rest. Leads roll in on autopilot.', icon: DollarSign },
             ].map((item, i) => {
               const StepIcon = item.icon
               return (
                 <div key={i} className="bg-white rounded-xl border border-gray-200 p-6 text-center relative">
-                  <div className="w-8 h-8 rounded-full bg-brand text-white font-heading font-bold text-sm flex items-center justify-center mx-auto mb-4">
-                    {item.step}
-                  </div>
+                  <div className="w-8 h-8 rounded-full bg-brand text-white font-heading font-bold text-sm flex items-center justify-center mx-auto mb-4">{item.step}</div>
                   <StepIcon className="w-8 h-8 text-gray-300 mx-auto mb-3" />
-                  <h3 className="font-heading text-sm font-bold uppercase text-gray-900 mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">
-                    {item.desc}
-                  </p>
+                  <h3 className="font-heading text-sm font-bold uppercase text-gray-900 mb-2">{item.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
                 </div>
               )
             })}
@@ -512,53 +477,10 @@ export default function UpgradePage() {
         </div>
       </section>
 
-      {/* Social Proof */}
+      {/* Comparison */}
       <section className="py-14">
         <div className="max-w-3xl mx-auto px-5">
-          <p className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 text-center mb-8">
-            What People Are Saying
-          </p>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {[
-              {
-                quote: "I kept saying I would set up my funnel 'next week.' They built the whole thing in 5 days. Now I just post and leads come in.",
-                name: 'Testimonial',
-                detail: 'Image placeholder',
-              },
-              {
-                quote: "The ManyChat automation alone was worth $495. Every comment on my sponsored post turns into a lead automatically.",
-                name: 'Testimonial',
-                detail: 'Image placeholder',
-              },
-            ].map((t, i) => (
-              <div key={i} className="bg-gray-50 border border-gray-100 rounded-xl p-5">
-                <div className="flex gap-0.5 mb-3">
-                  {[...Array(5)].map((_, s) => (
-                    <Star key={s} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <blockquote className="text-sm text-gray-600 leading-relaxed italic mb-4">
-                  "{t.quote}"
-                </blockquote>
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-gray-200 border border-gray-300" />
-                  <div>
-                    <p className="text-xs font-semibold text-gray-800">{t.name}</p>
-                    <p className="text-[10px] text-gray-400">{t.detail}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Comparison */}
-      <section className="py-14 bg-gray-50 border-y border-gray-100">
-        <div className="max-w-3xl mx-auto px-5">
-          <h2 className="font-heading text-2xl font-bold uppercase text-gray-900 text-center mb-8">
-            Do It Yourself vs. We Do It For You
-          </h2>
+          <h2 className="font-heading text-2xl font-bold uppercase text-gray-900 text-center mb-8">Do It Yourself vs. We Do It For You</h2>
           <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
             <div className="grid grid-cols-3 text-center border-b border-gray-100 bg-gray-50">
               <div className="py-3 px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">Task</div>
@@ -579,9 +501,7 @@ export default function UpgradePage() {
               <div key={i} className={`grid grid-cols-3 text-center ${i % 2 === 0 ? '' : 'bg-gray-50/50'}`}>
                 <div className="py-3 px-3 text-sm text-gray-700 text-left">{task}</div>
                 <div className="py-3 px-2 text-sm text-gray-400">{diy}</div>
-                <div className="py-3 px-2">
-                  <CheckCircle2 className="w-4 h-4 text-green-500 mx-auto" />
-                </div>
+                <div className="py-3 px-2"><CheckCircle2 className="w-4 h-4 text-green-500 mx-auto" /></div>
               </div>
             ))}
             <div className="grid grid-cols-3 text-center border-t border-gray-200 bg-gray-50">
@@ -594,32 +514,21 @@ export default function UpgradePage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-14">
+      <section className="py-14 bg-gray-50 border-y border-gray-100">
         <div className="max-w-2xl mx-auto px-5">
-          <p className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-brand text-center mb-2">
-            Questions
-          </p>
-          <h2 className="font-heading text-2xl font-bold uppercase text-gray-900 text-center mb-8">
-            Common Questions
-          </h2>
-
+          <p className="font-heading text-xs font-semibold uppercase tracking-[0.2em] text-brand text-center mb-2">Questions</p>
+          <h2 className="font-heading text-2xl font-bold uppercase text-gray-900 text-center mb-8">Common Questions</h2>
           <div className="space-y-0">
             {faqs.map((faq, i) => (
-              <div key={i} className="border-b border-gray-100 first:border-t">
+              <div key={i} className="border-b border-gray-200 first:border-t">
                 <button
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                   className="w-full flex items-center justify-between py-4 text-left group"
                 >
-                  <span className="text-[15px] font-semibold text-gray-800 group-hover:text-brand transition-colors pr-4">
-                    {faq.q}
-                  </span>
+                  <span className="text-[15px] font-semibold text-gray-800 group-hover:text-brand transition-colors pr-4">{faq.q}</span>
                   <ChevronDown className={`w-4 h-4 text-gray-400 shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
                 </button>
-                {openFaq === i && (
-                  <p className="text-sm text-gray-500 leading-relaxed pb-4 pr-8">
-                    {faq.a}
-                  </p>
-                )}
+                {openFaq === i && <p className="text-sm text-gray-500 leading-relaxed pb-4 pr-8">{faq.a}</p>}
               </div>
             ))}
           </div>
@@ -630,8 +539,7 @@ export default function UpgradePage() {
       <section className="py-16 bg-gray-900">
         <div className="max-w-xl mx-auto px-5 text-center">
           <h2 className="font-heading text-3xl sm:text-4xl font-bold uppercase text-white leading-tight mb-3">
-            Stop Building.<br />
-            <span className="text-brand">Start Collecting.</span>
+            Stop Building.<br /><span className="text-brand">Start Collecting.</span>
           </h2>
           <p className="text-gray-400 mb-8 leading-relaxed">
             You did the 7-day training. You know what AI can do. Now let us build the system that turns your knowledge into leads, followers, and revenue.
@@ -641,55 +549,13 @@ export default function UpgradePage() {
             <div className="flex items-center justify-center gap-6 mb-6">
               <button
                 onClick={() => setPaymentPlan('full')}
-                className={`text-sm font-semibold px-4 py-2 rounded-lg transition-colors ${
-                  paymentPlan === 'full' ? 'bg-brand text-white' : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                $495 Best Value
-              </button>
+                className={`text-sm font-semibold px-4 py-2 rounded-lg transition-colors ${paymentPlan === 'full' ? 'bg-brand text-white' : 'text-gray-400 hover:text-white'}`}
+              >$495 Best Value</button>
               <button
                 onClick={() => setPaymentPlan('split')}
-                className={`text-sm font-semibold px-4 py-2 rounded-lg transition-colors ${
-                  paymentPlan === 'split' ? 'bg-brand text-white' : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                2x $275
-              </button>
+                className={`text-sm font-semibold px-4 py-2 rounded-lg transition-colors ${paymentPlan === 'split' ? 'bg-brand text-white' : 'text-gray-400 hover:text-white'}`}
+              >2x $275</button>
             </div>
-
-            {paymentPlan === 'full' && (
-              <div className="flex items-center justify-center gap-1 mb-4">
-                <DollarSign className="w-3.5 h-3.5 text-green-400" />
-                <span className="text-xs font-semibold text-green-400">Save $55 vs. payment plan</span>
-              </div>
-            )}
-
-            {paymentPlan === 'split' && (
-              <div className="bg-gray-700/50 rounded-lg p-3 mb-4 text-left border border-gray-600">
-                <div className="flex items-center gap-1.5 mb-2">
-                  <Info className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                  <span className="text-xs font-semibold text-gray-300">How it works:</span>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <div>
-                    <p className="text-[10px] font-semibold text-blue-400 mb-1">Payment 1 -- We Build</p>
-                    <ul className="space-y-0.5">
-                      <li className="text-[10px] text-gray-400">Landing page + domain</li>
-                      <li className="text-[10px] text-gray-400">Legal pages + phone</li>
-                      <li className="text-[10px] text-gray-400">Chatbot + email drafts</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-semibold text-amber-400 mb-1">Payment 2 -- We Activate</p>
-                    <ul className="space-y-0.5">
-                      <li className="text-[10px] text-gray-400">ManyChat automation</li>
-                      <li className="text-[10px] text-gray-400">SMS + voicemail drops</li>
-                      <li className="text-[10px] text-gray-400">Everything connected live</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )}
 
             <a
               href={paymentPlan === 'full' ? 'https://coreypearson.gumroad.com/l/hhgqmv' : 'https://coreypearson.gumroad.com/l/tjgumb'}
@@ -700,18 +566,9 @@ export default function UpgradePage() {
             </a>
 
             <div className="flex items-center justify-center gap-4 text-xs text-gray-500">
-              <span className="flex items-center gap-1">
-                <Clock className="w-3 h-3" />
-                5-7 day delivery
-              </span>
-              <span className="flex items-center gap-1">
-                <Shield className="w-3 h-3" />
-                Secure payment
-              </span>
-              <span className="flex items-center gap-1">
-                <Users className="w-3 h-3" />
-                Real humans build it
-              </span>
+              <span className="flex items-center gap-1"><Clock className="w-3 h-3" />5-7 day delivery</span>
+              <span className="flex items-center gap-1"><Shield className="w-3 h-3" />Secure payment</span>
+              <span className="flex items-center gap-1"><Users className="w-3 h-3" />Real humans build it</span>
             </div>
           </div>
 
@@ -721,7 +578,6 @@ export default function UpgradePage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="py-6 border-t border-gray-200 text-center">
         <p className="text-xs text-gray-400">&copy; 2026 theproblemguide.com</p>
         <div className="flex justify-center gap-4 mt-2">
