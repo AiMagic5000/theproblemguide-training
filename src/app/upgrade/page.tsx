@@ -77,7 +77,7 @@ const features: Feature[] = [
       'Professional AI voice or your own recording',
       'Automated delivery through our system',
     ],
-    media: { mediaType: 'video', src: '/voicedrop-sample.mp4', label: 'Watch a sample voicedrop' },
+    media: { mediaType: 'audio', src: '/voicedrop-sample.mp3', label: 'Listen to the actual voicedrop we send TPG signups' },
   },
   {
     icon: Camera,
