@@ -50,7 +50,13 @@ export default function VideoPlayer({
     return null
   }
 
+  function isDirectVideo(url: string): boolean {
+    if (!url) return false
+    return /\.(mp4|webm|m4v|mov)(\?|$)/i.test(url)
+  }
+
   const embedUrl = getEmbedUrl(videoUrl)
+  const directVideo = !embedUrl && isDirectVideo(videoUrl) ? videoUrl : null
 
   return (
     <div>
@@ -64,6 +70,17 @@ export default function VideoPlayer({
             allowFullScreen
             title={title}
           />
+        ) : directVideo ? (
+          <video
+            controls
+            preload="metadata"
+            playsInline
+            className="absolute inset-0 w-full h-full object-contain bg-black"
+            poster={directVideo.replace(/\.(mp4|webm|m4v|mov)(\?|$)/i, '-poster.jpg$2')}
+          >
+            <source src={directVideo} type="video/mp4" />
+            Your browser does not support embedded video.
+          </video>
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
             <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center mb-4 backdrop-blur-sm border border-white/20">
