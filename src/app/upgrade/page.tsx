@@ -398,10 +398,28 @@ export default function UpgradePage() {
           </div>
 
           <div className="mt-8">
+            <p className="flash-banner text-center font-heading font-bold uppercase text-brand tracking-wide text-sm sm:text-base px-4 py-3 mb-3">
+              No offer to sell? We have 20 done-for-you offers ready, serviced digitally 24/7.
+            </p>
             <FlowMedia />
+            <p className="flash-banner text-center font-heading font-bold uppercase text-brand tracking-wide text-sm sm:text-base px-4 py-3 mt-3">
+              No offer to sell? We have 20 done-for-you offers ready, serviced digitally 24/7.
+            </p>
           </div>
         </div>
       </section>
+      <style jsx>{`
+        @keyframes tpg-flash {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.45; transform: scale(0.985); }
+        }
+        .flash-banner {
+          animation: tpg-flash 1.4s ease-in-out infinite;
+          border: 1.5px dashed rgba(207, 1, 29, 0.4);
+          border-radius: 10px;
+          background: rgba(207, 1, 29, 0.04);
+        }
+      `}</style>
 
       {/* Features */}
       <section className="py-16">
