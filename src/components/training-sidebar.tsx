@@ -277,14 +277,14 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
         </div>
       )}
 
-      {/* Account links */}
-      <div className="px-3 pb-2 pt-1 border-t border-gray-100">
+      {/* Account section -- darker slab, lighter than the near-black upgrade card */}
+      <div className="bg-gradient-to-br from-gray-700 to-gray-600 text-gray-100 px-3 pt-3 pb-3 mt-auto">
         <Link
           href="/resources"
           className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors ${
             pathname.startsWith('/resources')
-              ? 'bg-brand/5 text-brand font-semibold'
-              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+              ? 'bg-white/15 text-white font-semibold'
+              : 'text-gray-200 hover:text-white hover:bg-white/10'
           }`}
         >
           <BookOpen className="w-4 h-4" />
@@ -294,19 +294,16 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
           href="/account"
           className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors ${
             pathname.startsWith('/account')
-              ? 'bg-brand/5 text-brand font-semibold'
-              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+              ? 'bg-white/15 text-white font-semibold'
+              : 'text-gray-200 hover:text-white hover:bg-white/10'
           }`}
         >
           <User className="w-4 h-4" />
           My Account
         </Link>
-      </div>
-
-      {/* Sign Out */}
-      <div className="px-3 pb-4 pt-1 border-t border-gray-100">
+        <div className="border-t border-white/10 my-2"></div>
         <SignOutButton>
-          <button className="flex items-center gap-2 px-3 py-2 text-sm text-gray-500 hover:text-gray-700 transition-colors w-full">
+          <button className="flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors w-full">
             <LogOut className="w-4 h-4" />
             Sign Out
           </button>
