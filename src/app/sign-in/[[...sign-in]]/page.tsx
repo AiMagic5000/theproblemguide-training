@@ -13,6 +13,15 @@ export default function SignInPage() {
         <div className="absolute inset-0 opacity-30"
              style={{ backgroundImage: 'radial-gradient(circle at 20% 30%, rgba(207,1,29,0.4), transparent 40%), radial-gradient(circle at 80% 70%, rgba(207,1,29,0.25), transparent 50%)' }} />
 
+        {/* Mascot photo bottom-right, large, transparent bg blends w/ gradient */}
+        <img
+          src="/tpg-mascot.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute right-0 bottom-0 w-[70%] max-w-[520px] object-contain drop-shadow-2xl pointer-events-none select-none"
+          style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))' }}
+        />
+
         <div className="relative z-10 flex flex-col justify-between p-12 text-white w-full">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
@@ -43,9 +52,14 @@ export default function SignInPage() {
       {/* RIGHT: sign-in card */}
       <div className="flex-1 lg:w-1/2 flex flex-col items-center justify-center px-4 py-12 bg-gradient-to-b from-gray-50 to-white">
 
-        {/* Mobile-only mini hero */}
-        <div className="lg:hidden text-center mb-8 max-w-sm">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/5 border border-brand/20 mb-4">
+        {/* Mobile-only mini hero w/ mascot */}
+        <div className="lg:hidden text-center mb-6 max-w-sm">
+          <img
+            src="/tpg-mascot.png"
+            alt="The Problem Guide"
+            className="w-32 h-32 object-contain mx-auto mb-3 drop-shadow-md"
+          />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand/5 border border-brand/20 mb-3">
             <Sparkles className="w-3 h-3 text-brand" />
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand">The Problem Guide</span>
           </div>
