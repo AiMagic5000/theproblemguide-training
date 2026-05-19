@@ -15,6 +15,8 @@ import {
   X,
   Sparkles,
   ArrowRight,
+  BookOpen,
+  User,
 } from 'lucide-react'
 import { defaultDays } from '@/lib/training-data'
 
@@ -274,6 +276,32 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
           </div>
         </div>
       )}
+
+      {/* Account links */}
+      <div className="px-3 pb-2 pt-1 border-t border-gray-100">
+        <Link
+          href="/resources"
+          className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors ${
+            pathname.startsWith('/resources')
+              ? 'bg-brand/5 text-brand font-semibold'
+              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+          }`}
+        >
+          <BookOpen className="w-4 h-4" />
+          Resource Library
+        </Link>
+        <Link
+          href="/account"
+          className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors ${
+            pathname.startsWith('/account')
+              ? 'bg-brand/5 text-brand font-semibold'
+              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+          }`}
+        >
+          <User className="w-4 h-4" />
+          My Account
+        </Link>
+      </div>
 
       {/* Sign Out */}
       <div className="px-3 pb-4 pt-1 border-t border-gray-100">
