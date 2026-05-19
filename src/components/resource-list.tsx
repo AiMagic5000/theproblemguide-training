@@ -74,7 +74,7 @@ export default function ResourceList({ resources }: ResourceListProps) {
       {/* SMB $125 credit CTA -- shown under every video */}
       <section>
         <a
-          href="https://startmybusiness.us/?ref=tpg&utm_source=training&utm_medium=video"
+          href="https://startmybusiness.cloud/signup"
           target="_blank"
           rel="noopener noreferrer"
           className="block rounded-2xl overflow-hidden border border-brand/20 shadow-sm hover:shadow-lg transition-all group"
