@@ -80,6 +80,56 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
         </Link>
       </div>
 
+      {/* Upgrade Card -- placed above Your Training */}
+      <div className="px-3 pt-3 pb-1">
+        {/* Mobile: compact button */}
+        <button
+          type="button"
+          onClick={() => setUpgradeOpen(true)}
+          className="lg:hidden w-full rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 p-3 text-left text-white hover:from-gray-800 hover:to-gray-700 transition-colors"
+        >
+          <div className="flex items-center gap-2 mb-0.5">
+            <Sparkles className="w-3.5 h-3.5 text-yellow-400" />
+            <span className="text-[10px] font-bold uppercase tracking-wide text-yellow-400">Upgrade</span>
+          </div>
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="font-heading text-sm font-bold uppercase leading-tight">
+              Let Us Do 95% For You <span aria-hidden>✨</span>
+            </h3>
+            <ArrowRight className="w-4 h-4 text-gray-300 shrink-0" />
+          </div>
+        </button>
+
+        {/* Desktop: full card */}
+        <div className="hidden lg:block rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 p-4 text-white">
+          <div className="flex items-center gap-2 mb-2">
+            <Sparkles className="w-4 h-4 text-yellow-400" />
+            <span className="text-xs font-bold uppercase tracking-wide text-yellow-400">
+              Upgrade
+            </span>
+          </div>
+          <h3 className="font-heading text-base font-bold uppercase leading-tight mb-1">
+            Let Us Do 95% For You
+          </h3>
+          <p className="text-[11px] text-gray-300 leading-relaxed mb-3">
+            We build your AI business -- landing page, automations, emails, everything. You just show up.
+          </p>
+          <div className="mb-2">
+            <span className="text-2xl font-bold">$495</span>
+            <span className="text-xs text-green-400 ml-1.5 font-semibold">Save $55</span>
+          </div>
+          <p className="text-[10px] text-gray-400 mb-3">
+            Or 2 payments of $275 ($550)
+          </p>
+          <a
+            href="https://training.theproblemguide.com/upgrade"
+            className="block w-full py-2.5 bg-brand hover:bg-brand-dark text-white text-center text-sm font-bold rounded-lg transition-colors"
+          >
+            Get Started
+          </a>
+        </div>
+      </div>
+
       {/* Day Navigation */}
       <nav className="flex-1 overflow-y-auto px-3 py-4">
         <p className="px-2 mb-3 text-[11px] font-semibold uppercase tracking-widest text-gray-400">
@@ -182,56 +232,6 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
           })}
         </ul>
       </nav>
-
-      {/* Upgrade Card -- compact on mobile (link to modal), full on desktop */}
-      <div className="px-3 pb-3">
-        {/* Mobile: compact button */}
-        <button
-          type="button"
-          onClick={() => setUpgradeOpen(true)}
-          className="lg:hidden w-full rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 p-3 text-left text-white hover:from-gray-800 hover:to-gray-700 transition-colors"
-        >
-          <div className="flex items-center gap-2 mb-0.5">
-            <Sparkles className="w-3.5 h-3.5 text-yellow-400" />
-            <span className="text-[10px] font-bold uppercase tracking-wide text-yellow-400">Upgrade</span>
-          </div>
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="font-heading text-sm font-bold uppercase leading-tight">
-              Let Us Do 95% For You <span aria-hidden>✨</span>
-            </h3>
-            <ArrowRight className="w-4 h-4 text-gray-300 shrink-0" />
-          </div>
-        </button>
-
-        {/* Desktop: full card */}
-        <div className="hidden lg:block rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 p-4 text-white">
-          <div className="flex items-center gap-2 mb-2">
-            <Sparkles className="w-4 h-4 text-yellow-400" />
-            <span className="text-xs font-bold uppercase tracking-wide text-yellow-400">
-              Upgrade
-            </span>
-          </div>
-          <h3 className="font-heading text-base font-bold uppercase leading-tight mb-1">
-            Let Us Do 95% For You
-          </h3>
-          <p className="text-[11px] text-gray-300 leading-relaxed mb-3">
-            We build your AI business -- landing page, automations, emails, everything. You just show up.
-          </p>
-          <div className="mb-2">
-            <span className="text-2xl font-bold">$495</span>
-            <span className="text-xs text-green-400 ml-1.5 font-semibold">Save $55</span>
-          </div>
-          <p className="text-[10px] text-gray-400 mb-3">
-            Or 2 payments of $275 ($550)
-          </p>
-          <a
-            href="https://training.theproblemguide.com/upgrade"
-            className="block w-full py-2.5 bg-brand hover:bg-brand-dark text-white text-center text-sm font-bold rounded-lg transition-colors"
-          >
-            Get Started
-          </a>
-        </div>
-      </div>
 
       {/* Upgrade Modal (mobile tap-to-expand) */}
       {upgradeOpen && (
