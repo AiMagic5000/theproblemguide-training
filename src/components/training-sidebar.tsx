@@ -203,33 +203,6 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
         </ul>
       </nav>
 
-      {/* Desktop: full upgrade card sits above the Resource/Account/Sign-out slab */}
-      <div className="hidden lg:block px-3 pb-3">
-        <div className="rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 p-4 text-white">
-          <div className="flex items-center gap-2 mb-2">
-            <Sparkles className="w-4 h-4 text-yellow-400" />
-            <span className="text-xs font-bold uppercase tracking-wide text-yellow-400">Upgrade</span>
-          </div>
-          <h3 className="font-heading text-base font-bold uppercase leading-tight mb-1">
-            Let Us Do 95% For You
-          </h3>
-          <p className="text-[11px] text-gray-300 leading-relaxed mb-3">
-            We build your AI business -- landing page, automations, emails, everything. You just show up.
-          </p>
-          <div className="mb-2">
-            <span className="text-2xl font-bold">$495</span>
-            <span className="text-xs text-green-400 ml-1.5 font-semibold">Save $55</span>
-          </div>
-          <p className="text-[10px] text-gray-400 mb-3">Or 2 payments of $275 ($550)</p>
-          <a
-            href="https://training.theproblemguide.com/upgrade"
-            className="block w-full py-2.5 bg-brand hover:bg-brand-dark text-white text-center text-sm font-bold rounded-lg transition-colors"
-          >
-            Get Started
-          </a>
-        </div>
-      </div>
-
       {/* Upgrade Modal (mobile tap-to-expand) */}
       {upgradeOpen && (
         <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-sm p-0 sm:p-4 lg:hidden" onClick={() => setUpgradeOpen(false)}>
@@ -274,14 +247,14 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
         </div>
       )}
 
-      {/* Account section -- brand wine-dark slab (lighter than near-black upgrade card) */}
-      <div className="bg-gradient-to-br from-[#3a0d14] to-[#54141f] text-gray-100 px-3 pt-3 pb-3 mt-auto rounded-tr-2xl lg:rounded-none">
+      {/* Account section -- light brand-red tint matching active day tab */}
+      <div className="bg-brand/5 border-t border-brand/15 px-3 pt-3 pb-3 mt-auto">
         <Link
           href="/resources"
           className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors ${
             pathname.startsWith('/resources')
-              ? 'bg-white/15 text-white font-semibold'
-              : 'text-gray-200 hover:text-white hover:bg-white/10'
+              ? 'bg-brand/10 text-brand font-semibold'
+              : 'text-gray-700 hover:text-brand hover:bg-brand/10'
           }`}
         >
           <BookOpen className="w-4 h-4" />
@@ -291,20 +264,47 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
           href="/account"
           className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors ${
             pathname.startsWith('/account')
-              ? 'bg-white/15 text-white font-semibold'
-              : 'text-gray-200 hover:text-white hover:bg-white/10'
+              ? 'bg-brand/10 text-brand font-semibold'
+              : 'text-gray-700 hover:text-brand hover:bg-brand/10'
           }`}
         >
           <User className="w-4 h-4" />
           My Account
         </Link>
-        <div className="border-t border-white/10 my-2"></div>
+        <div className="border-t border-brand/15 my-2"></div>
         <SignOutButton>
-          <button className="flex items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors w-full">
+          <button className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-brand hover:bg-brand/10 rounded-lg transition-colors w-full">
             <LogOut className="w-4 h-4" />
             Sign Out
           </button>
         </SignOutButton>
+      </div>
+
+      {/* Desktop: full upgrade card sits BELOW Resource/Account/Sign-out section */}
+      <div className="hidden lg:block px-3 py-3 border-t border-gray-100">
+        <div className="rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 p-4 text-white">
+          <div className="flex items-center gap-2 mb-2">
+            <Sparkles className="w-4 h-4 text-yellow-400" />
+            <span className="text-xs font-bold uppercase tracking-wide text-yellow-400">Upgrade</span>
+          </div>
+          <h3 className="font-heading text-base font-bold uppercase leading-tight mb-1">
+            Let Us Do 95% For You
+          </h3>
+          <p className="text-[11px] text-gray-300 leading-relaxed mb-3">
+            We build your AI business -- landing page, automations, emails, everything. You just show up.
+          </p>
+          <div className="mb-2">
+            <span className="text-2xl font-bold">$495</span>
+            <span className="text-xs text-green-400 ml-1.5 font-semibold">Save $55</span>
+          </div>
+          <p className="text-[10px] text-gray-400 mb-3">Or 2 payments of $275 ($550)</p>
+          <a
+            href="https://training.theproblemguide.com/upgrade"
+            className="block w-full py-2.5 bg-brand hover:bg-brand-dark text-white text-center text-sm font-bold rounded-lg transition-colors"
+          >
+            Get Started
+          </a>
+        </div>
       </div>
     </>
   )
