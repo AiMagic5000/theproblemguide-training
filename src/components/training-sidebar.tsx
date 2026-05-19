@@ -80,26 +80,6 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
         </Link>
       </div>
 
-      {/* Upgrade Card -- compact button on mobile (above Your Training), full card on desktop (at bottom) */}
-      <div className="lg:hidden px-3 pt-3 pb-1">
-        <button
-          type="button"
-          onClick={() => setUpgradeOpen(true)}
-          className="w-full rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 p-3 text-left text-white hover:from-gray-800 hover:to-gray-700 transition-colors"
-        >
-          <div className="flex items-center gap-2 mb-0.5">
-            <Sparkles className="w-3.5 h-3.5 text-yellow-400" />
-            <span className="text-[10px] font-bold uppercase tracking-wide text-yellow-400">Upgrade</span>
-          </div>
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="font-heading text-sm font-bold uppercase leading-tight">
-              Let Us Do 95% For You <span aria-hidden>✨</span>
-            </h3>
-            <ArrowRight className="w-4 h-4 text-gray-300 shrink-0" />
-          </div>
-        </button>
-      </div>
-
       {/* Day Navigation */}
       <nav className="flex-1 overflow-y-auto px-3 py-4">
         <p className="px-2 mb-3 text-[11px] font-semibold uppercase tracking-widest text-gray-400">
@@ -300,8 +280,28 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
         </div>
       </div>
 
+      {/* Mobile compact upgrade -- just above Sign Out */}
+      <div className="lg:hidden px-3 pt-3 pb-1 border-t border-gray-100">
+        <button
+          type="button"
+          onClick={() => setUpgradeOpen(true)}
+          className="w-full rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 p-3 text-left text-white hover:from-gray-800 hover:to-gray-700 transition-colors"
+        >
+          <div className="flex items-center gap-2 mb-0.5">
+            <Sparkles className="w-3.5 h-3.5 text-yellow-400" />
+            <span className="text-[10px] font-bold uppercase tracking-wide text-yellow-400">Upgrade</span>
+          </div>
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="font-heading text-sm font-bold uppercase leading-tight">
+              Let Us Do 95% For You <span aria-hidden>✨</span>
+            </h3>
+            <ArrowRight className="w-4 h-4 text-gray-300 shrink-0" />
+          </div>
+        </button>
+      </div>
+
       {/* Sign Out -- always last */}
-      <div className="px-3 pt-2 pb-4 border-t border-gray-100">
+      <div className="px-3 pt-2 pb-4 lg:border-t lg:border-gray-100">
         <SignOutButton>
           <button className="flex items-center gap-2 px-3 py-2 text-sm text-gray-500 hover:text-brand hover:bg-brand/10 rounded-lg transition-colors w-full">
             <LogOut className="w-4 h-4" />
