@@ -271,16 +271,9 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
           <User className="w-4 h-4" />
           My Account
         </Link>
-        <div className="border-t border-brand/15 my-2"></div>
-        <SignOutButton>
-          <button className="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-brand hover:bg-brand/10 rounded-lg transition-colors w-full">
-            <LogOut className="w-4 h-4" />
-            Sign Out
-          </button>
-        </SignOutButton>
       </div>
 
-      {/* Desktop: full upgrade card sits BELOW Resource/Account/Sign-out section */}
+      {/* Desktop: full upgrade card sits BELOW Resource/Account section */}
       <div className="hidden lg:block px-3 py-3 border-t border-gray-100">
         <div className="rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 p-4 text-white">
           <div className="flex items-center gap-2 mb-2">
@@ -305,6 +298,16 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
             Get Started
           </a>
         </div>
+      </div>
+
+      {/* Sign Out -- always last */}
+      <div className="px-3 pt-2 pb-4 border-t border-gray-100">
+        <SignOutButton>
+          <button className="flex items-center gap-2 px-3 py-2 text-sm text-gray-500 hover:text-brand hover:bg-brand/10 rounded-lg transition-colors w-full">
+            <LogOut className="w-4 h-4" />
+            Sign Out
+          </button>
+        </SignOutButton>
       </div>
     </>
   )
