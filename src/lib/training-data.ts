@@ -29,6 +29,11 @@ export const defaultDays = [
         description: 'Forget everything you think you know. AI is simpler than people make it sound. This is the only explanation you need.',
         video_url: 'https://theproblemguide.com/videos/day-1-video-2.mp4',
         duration_minutes: 5,
+        resources: [
+          { id: 'd1v2-pdf', type: 'pdf', title: 'Day 1 V2 -- Action Guide (PDF)', url: 'https://theproblemguide.com/resources/day-1-video-2.pdf', description: 'AI=conversation diagram. 5th-grade SOP. One real question you ask Claude today.' },
+          { id: 'd1v2-claude', type: 'link', title: 'Open Claude.ai (the only AI we recommend)', url: 'https://claude.ai', description: 'Your AI assistant. Free. Sign up with Google.' },
+          { id: 'd1v2-report', type: 'pdf', title: 'The Problem 2026 Report', url: 'https://theproblemguide.com/the-problem-2026-report.pdf?v=20260519', description: 'The full book this training is built on.' },
+        ],
       },
       {
         position: 3,
@@ -36,6 +41,11 @@ export const defaultDays = [
         description: 'The basic loop: copy, paste, screenshot, ask. Four moves that turn AI from a toy into a real tool you can use today.',
         video_url: 'https://theproblemguide.com/videos/day-1-video-3.mp4',
         duration_minutes: 6,
+        resources: [
+          { id: 'd1v3-pdf', type: 'pdf', title: 'Day 1 V3 -- Action Guide (PDF)', url: 'https://theproblemguide.com/resources/day-1-video-3.pdf', description: 'The 4-move loop infographic. 5th-grade SOP. Solve one real problem today.' },
+          { id: 'd1v3-claude', type: 'link', title: 'Open Claude.ai (the only AI we recommend)', url: 'https://claude.ai', description: 'Your AI assistant. Free. Sign up with Google.' },
+          { id: 'd1v3-report', type: 'pdf', title: 'The Problem 2026 Report', url: 'https://theproblemguide.com/the-problem-2026-report.pdf?v=20260519', description: 'The full book this training is built on.' },
+        ],
       },
     ],
   },
@@ -51,6 +61,10 @@ export const defaultDays = [
         video_url: 'https://theproblemguide.com/videos/day-2-video-1.mp4',
         poster_url: '/posters/day-2-video-1.png',
         duration_minutes: 4,
+        resources: [
+          { id: 'd2v1-pdf', type: 'pdf', title: 'Day 2 V1 -- Action Guide (PDF)', url: 'https://theproblemguide.com/resources/day-2-video-1.pdf', description: 'Role / Audience / Style infographic. Plug-and-play template. 5th-grade SOP.' },
+          { id: 'd2v1-claude', type: 'link', title: 'Open Claude.ai (the only AI we recommend)', url: 'https://claude.ai', description: 'Your AI assistant. Free. Sign up with Google.' },
+        ],
       },
       {
         position: 2,
@@ -58,6 +72,10 @@ export const defaultDays = [
         description: 'Five exact prompts I run weekly. Word for word. Copy, paste, fill in the blanks, use today.',
         video_url: 'https://theproblemguide.com/videos/day-2-video-2.mp4',
         duration_minutes: 5,
+        resources: [
+          { id: 'd2v2-pdf', type: 'pdf', title: 'Day 2 V2 -- 5 Prompts (PDF)', url: 'https://theproblemguide.com/resources/day-2-video-2.pdf', description: 'The 5 prompts written out: pitch, headline, objections, email sequence, content ideas.' },
+          { id: 'd2v2-claude', type: 'link', title: 'Open Claude.ai (the only AI we recommend)', url: 'https://claude.ai', description: 'Your AI assistant. Free. Sign up with Google.' },
+        ],
       },
       {
         position: 3,
@@ -65,6 +83,10 @@ export const defaultDays = [
         description: 'Three paths. Pick one. Take a real action in the next 20 minutes. Tell someone. Sleep on it.',
         video_url: 'https://theproblemguide.com/videos/day-2-video-3.mp4',
         duration_minutes: 4,
+        resources: [
+          { id: 'd2v3-pdf', type: 'pdf', title: 'Day 2 V3 -- Action Guide (PDF)', url: 'https://theproblemguide.com/resources/day-2-video-3.pdf', description: '3-path diagram. Pick one. Do the smallest version today. Tell one person.' },
+          { id: 'd2v3-claude', type: 'link', title: 'Open Claude.ai (the only AI we recommend)', url: 'https://claude.ai', description: 'Your AI assistant. Free. Sign up with Google.' },
+        ],
       },
     ],
   },
