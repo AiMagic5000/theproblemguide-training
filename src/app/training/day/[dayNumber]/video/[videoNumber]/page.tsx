@@ -39,8 +39,17 @@ export default function VideoPage({ params }: PageProps) {
       ? { day: day + 1, video: 1 }
       : null
 
-  // Placeholder resources (admin fills these via Supabase)
-  const resources: Resource[] = []
+  // Resources defined per-video in training-data.ts (with sensible defaults)
+  const videoResources = (video as any).resources as Resource[] | undefined
+  const resources: Resource[] = videoResources && videoResources.length > 0 ? videoResources : [
+    {
+      id: 'guide',
+      type: 'pdf',
+      title: `Day ${day} - Video ${videoPos} Action Guide`,
+      url: `https://theproblemguide.com/resources/day-${day}-video-${videoPos}.pdf`,
+      description: 'PDF guide with hyperlinks, action steps, and a 5th-grade-friendly SOP.',
+    },
+  ]
 
   return (
     <div>

@@ -13,15 +13,6 @@ export default function SignInPage() {
         <div className="absolute inset-0 opacity-30"
              style={{ backgroundImage: 'radial-gradient(circle at 20% 30%, rgba(207,1,29,0.4), transparent 40%), radial-gradient(circle at 80% 70%, rgba(207,1,29,0.25), transparent 50%)' }} />
 
-        {/* Mascot photo bottom-right, large, transparent bg blends w/ gradient */}
-        <img
-          src="/tpg-mascot.png"
-          alt=""
-          aria-hidden="true"
-          className="absolute right-0 bottom-0 w-[70%] max-w-[520px] object-contain drop-shadow-2xl pointer-events-none select-none"
-          style={{ filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.5))' }}
-        />
-
         <div className="relative z-10 flex flex-col justify-between p-12 text-white w-full">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
@@ -32,9 +23,17 @@ export default function SignInPage() {
               Welcome to your<br />
               <span className="text-brand">7-Day AI</span> training.
             </h1>
-            <p className="text-lg text-white/70 leading-relaxed max-w-md">
+            <p className="text-lg text-white/70 leading-relaxed max-w-md mb-6">
               You did the hard part already -- you started. Sign in to unlock Day 1.
             </p>
+
+            {/* Mascot -- left aligned just under intro copy */}
+            <img
+              src="/tpg-mascot.png"
+              alt="The Problem Guide"
+              className="w-44 h-44 object-contain drop-shadow-2xl"
+              style={{ filter: 'drop-shadow(0 16px 32px rgba(0,0,0,0.45))' }}
+            />
           </div>
 
           <div className="space-y-3 max-w-md">
