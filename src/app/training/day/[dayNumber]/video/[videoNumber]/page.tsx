@@ -71,6 +71,7 @@ export default function VideoPage({ params }: PageProps) {
         title={video.title}
         description={video.description}
         videoUrl={video.video_url}
+        posterUrl={(video as any).poster_url}
         durationMinutes={video.duration_minutes}
       />
 
