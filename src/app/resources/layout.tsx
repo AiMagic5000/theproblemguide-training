@@ -4,7 +4,7 @@ export default function ResourcesLayout({ children }: { children: React.ReactNod
   return (
     <div className="min-h-screen flex">
       <TrainingSidebar />
-      <main className="flex-1 lg:ml-72 p-6 pt-16 lg:pt-6">{children}</main>
+      <main className="flex-1 lg:ml-0 pl-16 pr-4 pt-16 pb-8 sm:px-6 sm:pt-16 lg:p-10">{children}</main>
     </div>
   )
 }

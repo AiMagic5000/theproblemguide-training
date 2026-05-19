@@ -277,8 +277,8 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
         </div>
       )}
 
-      {/* Account section -- darker slab, lighter than the near-black upgrade card */}
-      <div className="bg-gradient-to-br from-gray-700 to-gray-600 text-gray-100 px-3 pt-3 pb-3 mt-auto">
+      {/* Account section -- brand wine-dark slab (lighter than near-black upgrade card) */}
+      <div className="bg-gradient-to-br from-[#3a0d14] to-[#54141f] text-gray-100 px-3 pt-3 pb-3 mt-auto rounded-tr-2xl lg:rounded-none">
         <Link
           href="/resources"
           className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors ${
@@ -335,8 +335,10 @@ export default function TrainingSidebar({ completedVideos = new Set() }: Sidebar
       <aside
         className={`
           fixed top-0 left-0 h-full w-72 bg-white border-r border-gray-200
-          flex flex-col z-40
+          flex flex-col z-40 overflow-hidden
+          rounded-r-2xl shadow-xl
           transition-transform duration-300 ease-out
+          lg:rounded-none lg:shadow-none
           lg:translate-x-0 lg:static lg:z-auto
           ${mobileOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
