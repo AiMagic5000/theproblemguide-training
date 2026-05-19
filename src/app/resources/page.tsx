@@ -5,14 +5,14 @@ const resources = [
     title: 'The Problem -- 2026 Report (PDF)',
     description: 'The original report. The argument behind everything in this training. Read it slow. 45 min.',
     icon: FileText,
-    href: 'https://theproblemguide.com/the-problem-2026-report.pdf',
+    href: 'https://theproblemguide.com/the-problem-2026-report.pdf?v=20260519',
     external: true,
   },
   {
     title: 'The Problem -- Mobile-Readable PDF',
     description: 'Same report, sized for phone reading. Bigger fonts. Easier on the eyes.',
     icon: FileText,
-    href: 'https://theproblemguide.com/the-problem-2026-report-mobile.pdf',
+    href: 'https://theproblemguide.com/the-problem-2026-report-mobile.pdf?v=20260519',
     external: true,
   },
   {

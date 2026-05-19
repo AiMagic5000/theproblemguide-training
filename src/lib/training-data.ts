@@ -20,7 +20,7 @@ export const defaultDays = [
         resources: [
           { id: 'd1v1-pdf', type: 'pdf', title: 'Day 1 V1 -- Action Guide (PDF)', url: 'https://theproblemguide.com/resources/day-1-video-1.pdf', description: 'The Loop diagram, 5th-grade SOP, 3 action steps you do today.' },
           { id: 'd1v1-claude', type: 'link', title: 'Open Claude.ai (the only AI we recommend)', url: 'https://claude.ai', description: 'Your AI assistant. Free. Sign up with Google.' },
-          { id: 'd1v1-report', type: 'pdf', title: 'The Problem 2026 Report', url: 'https://theproblemguide.com/the-problem-2026-report.pdf', description: 'The book this training is built on. 21 pages.' },
+          { id: 'd1v1-report', type: 'pdf', title: 'The Problem 2026 Report', url: 'https://theproblemguide.com/the-problem-2026-report.pdf?v=20260519', description: 'The book this training is built on. 21 pages.' },
         ],
       },
       {
