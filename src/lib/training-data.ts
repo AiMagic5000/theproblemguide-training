@@ -44,6 +44,7 @@ export const defaultDays = [
         title: 'How to Talk to AI (It Is Just a Conversation)',
         description: 'Role. Audience. Style. Three lines that change every answer you get from AI.',
         video_url: 'https://theproblemguide.com/videos/day-2-video-1.mp4',
+        poster_url: '/posters/day-2-video-1.png',
         duration_minutes: 4,
       },
       {
